@@ -1,0 +1,180 @@
+
+Algoritmo JML_SYSTEM
+		Definir  individual, Doble, Suite, total, habitaciones_individual, habitaciones_doble,habitaciones_suite,habitaciones  Como Entero;
+		individual <- 1;
+		Doble <- 2;
+		Suite <- 1;
+		Definir  opt Como Caracter 
+		Definir  huésped Como Caracter
+		home()	
+FinAlgoritmo
+	
+SubProceso integrante()
+	Escribir ("")
+	Escribir ("Nombres                            Matriculas")
+	
+	Escribir ("")
+	Escribir ("Marlin Ullola Rodriguez           18-SIIN-1-148")
+	Escribir ("Jhonatan De los Santos            19-EIIN-1-075")
+	Escribir ("Lissi Victoria Ferreras Ferreras  19-MIIN-1-099")
+FinSubProceso
+
+SubProceso asignar_habitacion()
+	Limpiar Pantalla
+	Escribir ("=== Habitaciónes ===            === Precio ===")
+	
+	Escribir ("1-) Habitación individual        	$7000   pesos")
+	Escribir ("2-) Habitación Doble             $13000  pesos")
+	Escribir ("3-) Suite                        $20000  pesos")
+	Escribir ("")
+	Escribir ("4-) Regresar")
+	Leer  opt
+	
+	si opt == '1' Entonces
+		Limpiar Pantalla
+		habitaciones_individual <- 7000;
+		Escribir ("Has elejido la habitación individual que tiene un costo de $7000")
+		total <- habitaciones_individual + habitaciones_doble + habitaciones_suite
+		individual <- 1;
+		
+		Escribir "Individual: " ConvertirATexto(individual)
+		Escribir "Doble: " ConvertirATexto(Doble)
+		Escribir "Suite: " ConvertirATexto(Suite)
+		Esperar Tecla
+		home()
+		
+	FinSi
+	si opt == '2' Entonces
+		habitaciones_doble <- 13000;
+		total <- habitaciones_individual + habitaciones_doble + habitaciones_suite
+		Escribir ("Has elejido la habitación doble que tiene un costo de $13000")
+		Doble <- 0;
+		
+		Escribir "Individual: " ConvertirATexto(individual)
+		Escribir "Doble: " ConvertirATexto(Doble)
+		Escribir "Suite: " ConvertirATexto(Suite)
+		Esperar Tecla
+		home()
+	FinSi
+	si opt == '3'
+		habitaciones_suite <- 20000;
+		Escribir ("Has elejido la habitación suite que tiene un costo de $20000")
+		Suite <- 0;
+		total <- habitaciones_individual + habitaciones_doble + habitaciones_suite
+		
+		Escribir "Individual: " ConvertirATexto(individual)
+		Escribir "Doble: " ConvertirATexto(Doble)
+		Escribir "Suite: " ConvertirATexto(Suite)
+		Esperar Tecla
+		home()
+	FinSi
+	
+	si opt == '4'
+		home()
+	FinSi
+	
+FinSubProceso
+
+SubProceso habitaciones_disponibles()
+	Limpiar Pantalla
+	Escribir ("============== Habitaciónes Disponibles ==============")
+	Escribir ("Habitaciones Actual")
+	Escribir "Individual: 		" ConvertirATexto(20)
+	Escribir "Doble: 			" ConvertirATexto(5 )
+	Escribir "Suite: 			" ConvertirATexto(11 )
+	Esperar Tecla
+	home()
+FinSubProceso
+
+SubProceso registro_pasajeros()
+	Limpiar Pantalla
+	Escribir ("============== Registrar Huésped ==============")
+	Escribir ("Nombre del huésped: ")
+	Leer  opt 
+	huésped <- opt
+	Escribir ("")
+	
+	Escribir ("Desea registrar otro huésped Si/No: ")
+	Leer seguir
+	
+	si seguir == 'Si' o seguir == 'Si'
+		registro_pasajeros()
+	FinSi
+	
+	si seguir == 'No' o seguir == 'No'
+		home()
+	FinSi
+FinSubProceso
+
+SubProceso check_in()
+	Limpiar Pantalla
+	Escribir ("============== Check In ============== ")
+	Escribir ("Nombre del usuario: ")
+	
+	leer opt
+	si opt == huésped
+		Escribir "Bienvenido " ConvertirATexto(huésped)
+		Esperar Tecla
+		home()
+	FinSi
+	
+	si opt Es Distinto De huésped
+		Escribir ("Luis Mejia, ha sido registrado satisfactoriamente")
+		Esperar Tecla
+		home()
+	FinSi
+FinSubProceso
+
+SubAlgoritmo ganancias_totales()
+	Limpiar Pantalla
+	Escribir ("============== Ganancias Totales ==============")
+	Escribir "Ganancias por Habitación Individual " ConvertirATexto(7000)
+	Escribir "Ganancias por Habitación Doble " ConvertirATexto(habitaciones_doble)
+	Escribir "Ganancias por Habitación Suite " ConvertirATexto(habitaciones_suite)
+	
+	Escribir "Ganancias total: " ConvertirATexto(7000)
+	Esperar Tecla
+	home()
+FinSubAlgoritmo
+
+SubProceso home()
+	Limpiar Pantalla
+	Escribir (" ============== Bienvenido al Hotel ============== ")
+	
+	
+	Escribir("")
+	Escribir ("1-) Asignar una habitación")
+	Escribir ("2-) Mostrar habitaciones disponibles")
+	Escribir ("3-) Ver registro de huésped")
+	Escribir ("4-) Check In")
+	Escribir ("5-) Check Out")
+	Escribir ("6-) Mostrar ganancias totales")
+	Escribir ("00-) Salir")
+	
+	integrante()
+	Escribir ("")
+	Escribir ("Escoja una opcion: ")
+	leer opt
+	
+	
+	si opt == '1' Entonces
+		asignar_habitacion()
+	FinSi
+	
+	si opt == '2'
+		habitaciones_disponibles()
+	FinSi
+	
+	si opt == '3'
+		registro_pasajeros()
+	FinSi
+	si opt == '4'
+		check_in()
+	FinSi
+	
+	si opt == '6'
+		ganancias_totales()
+	FinSi
+	
+FinSubProceso
+
